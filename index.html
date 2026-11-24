@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Los Fragmentos Perdidos de San Bernardo</title>
+  <meta name="description" content="Plataforma de turismo local para descubrir lugares patrimoniales y de interés de San Bernardo, Chile. Conoce sus historias y reserva tu visita.">
+  <meta name="theme-color" content="#d96b7e">
+  <link rel="icon" href="assets/img/almendra-avatar.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@400;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ============ ENCABEZADO ============ -->
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="#inicio" aria-label="Los Fragmentos Perdidos de San Bernardo, ir al inicio">
+        <svg class="puzzle-ico" viewBox="0 0 48 48" aria-hidden="true"><use href="#ico-puzzle"/></svg>
+        <span><b>Fragmentos</b> <i>perdidos</i></span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="menu" class="main-nav" aria-label="Principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#destinos">Destinos</a>
+        <a href="#cantera">La Cantera</a>
+        <a href="#reservas">Reservas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ============ A. INICIO ============ -->
+    <section class="hero section" id="inicio" data-almendra="¡Hola! Soy Almendra, tu compañera de exploración. ¿Qué lugar te gustaría descubrir hoy?">
+      <svg class="route route-hero" viewBox="0 0 1200 500" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M20 60 C 300 10, 380 220, 640 120 S 1000 20, 1180 150"/>
+      </svg>
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <p class="script eyebrow">Una guía de exploración local</p>
+          <h1>
+            <span class="h1-small">Los</span>
+            <span class="h1-big">Fragmentos perdidos</span>
+            <span class="script h1-script">de San Bernardo</span>
+          </h1>
+          <p class="lead">
+            Cada lugar guarda una pieza de nuestra historia. Esta plataforma reúne
+            destinos turísticos y patrimoniales de San Bernardo para que los conozcas,
+            los recorras y encuentres cómo visitarlos.
+          </p>
+          <p class="hero-note">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#ico-puzzle"/></svg>
+            Los lugares requieren reserva previa. Te ayudamos a encontrar los enlaces oficiales.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#destinos">Explorar destinos</a>
+            <a class="btn btn-ghost" href="#contacto">Pedir ayuda con mi reserva</a>
+          </div>
+        </div>
+
+        <div class="hero-collage" aria-label="Collage de San Bernardo con Almendra, nuestra guía">
+          <figure class="photo p-plaza torn-wrap"><div class="torn"><img src="assets/img/ref-plaza.jpg" alt="Plaza de San Bernardo con quiosco" loading="eager"></div></figure>
+          <figure class="photo p-cerro torn-wrap"><div class="torn"><img src="assets/img/ref-cerro.jpg" alt="Vista aérea de un cerro con vegetación"></div></figure>
+          <figure class="photo p-letrero torn-wrap"><div class="torn"><img src="assets/img/ref-letrero.jpg" alt="Letrero de San Bernardo"></div></figure>
+          <img class="almendra-hero" src="assets/img/almendra.png" alt="Almendra, la ayudante virtual: una joven de cabello castaño con audífonos y chaqueta rosados, que saluda y sostiene una pieza de rompecabezas">
+          <svg class="compass" viewBox="0 0 120 120" aria-hidden="true"><use href="#ico-compass"/></svg>
+          <svg class="piece piece-a" viewBox="0 0 48 48" aria-hidden="true"><use href="#ico-puzzle"/></svg>
+          <svg class="piece piece-b" viewBox="0 0 48 48" aria-hidden="true"><use href="#ico-puzzle"/></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ B. DESTINOS ============ -->
+    <section class="section" id="destinos" data-almendra="Cada tarjeta es un fragmento por descubrir. Toca «Conocer más» en el que te llame la atención.">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="script eyebrow">Explora San Bernardo</p>
+          <h2>Destinos por descubrir</h2>
+          <p class="section-lead">Lugares turísticos y patrimoniales de la comuna. Iremos sumando nuevos fragmentos al álbum.</p>
+        </header>
+        <div class="cards" id="cards-destinos" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ============ C. CERRO ESCUELA LA CANTERA ============ -->
+    <section class="section paper-alt" id="cantera" data-almendra="¡Este destino tiene una historia interesante! Recorre sus secciones con los atajos de aquí abajo.">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="script eyebrow">Destino destacado</p>
+          <h2>Cerro Escuela La Cantera</h2>
+        </header>
+
+        <nav class="subnav" aria-label="Secciones de La Cantera">
+          <a href="#c-conoce">Conoce el cerro</a>
+          <a href="#c-historia">Historia</a>
+          <a href="#c-flora">Flora</a>
+          <a href="#c-fauna">Fauna</a>
+          <a href="#c-conservacion">Conservación</a>
+        </nav>
+
+        <!-- 1. Conoce -->
+        <article class="block" id="c-conoce">
+          <div class="block-text">
+            <h3><span class="num">1</span> Conoce el Cerro Escuela La Cantera</h3>
+            <p>El Cerro Escuela La Cantera, ubicado en la comuna de San Bernardo, es un espacio que promueve la educación ambiental, el reconocimiento de la biodiversidad local y la conexión de la comunidad con su patrimonio natural.</p>
+            <p>A través de sus senderos y espacios educativos, invita a descubrir la importancia de proteger los ecosistemas, observar la naturaleza y conocer el entorno desde una perspectiva diferente, sin necesidad de salir de la comuna.</p>
+          </div>
+          <figure class="photo torn-wrap block-photo"><div class="torn"><img src="assets/img/ref-cerro.jpg" alt="Vista del cerro con vegetación"></div></figure>
+        </article>
+
+        <!-- 2. Historia -->
+        <article class="block" id="c-historia">
+          <div class="block-text wide">
+            <h3><span class="num">2</span> Historia y recuperación del cerro</h3>
+            <p>La recuperación ambiental del Cerro La Cantera representa una oportunidad para transformar el entorno en un espacio de aprendizaje, conservación y encuentro con la naturaleza.</p>
+            <p>Su enfoque educativo permite acercar a la comunidad a temáticas como la protección de la biodiversidad, la restauración de espacios naturales y la importancia de preservar los cerros urbanos de San Bernardo.</p>
+            <div class="timeline" id="timeline" aria-label="Línea de tiempo del cerro"></div>
+          </div>
+        </article>
+
+        <!-- 3. Flora -->
+        <article class="block stack" id="c-flora">
+          <h3><span class="num">3</span> Flora y vegetación</h3>
+          <p>La vegetación del cerro y su importancia para el ecosistema.</p>
+          <div class="specimens" id="grid-flora"></div>
+        </article>
+
+        <!-- 4. Fauna -->
+        <article class="block stack" id="c-fauna">
+          <h3><span class="num">4</span> Fauna y biodiversidad</h3>
+          <p>Los animales y organismos que habitan el entorno y su importancia ecológica.</p>
+          <div class="specimens" id="grid-fauna"></div>
+        </article>
+
+        <!-- 5. Conservación -->
+        <article class="block stack" id="c-conservacion">
+          <h3><span class="num">5</span> Iniciativas de conservación ambiental</h3>
+          <p>Durante nuestras visitas al cerro pudimos observar distintas iniciativas que cuidan el entorno.</p>
+          <div class="initiatives">
+            <div class="initiative">
+              <div class="init-art" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#ico-bee"/></svg></div>
+              <h4>Protección de los polinizadores</h4>
+              <p>Las colmenas permiten acercar a los visitantes al mundo de las abejas y comprender su importancia en la polinización, la reproducción de las plantas y el equilibrio de los ecosistemas.</p>
+              <div class="photo-slot" data-slot="Foto de las colmenas">Aquí irá una fotografía</div>
+            </div>
+            <div class="initiative">
+              <div class="init-art" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#ico-log"/></svg></div>
+              <h4>Refugios naturales para insectos</h4>
+              <p>Las estructuras elaboradas con troncos y ramas pueden proporcionar refugio a pequeños organismos, favorecer la biodiversidad y contribuir al aprovechamiento de materiales naturales.</p>
+              <div class="photo-slot" data-slot="Foto de los refugios">Aquí irá una fotografía</div>
+            </div>
+            <div class="initiative">
+              <div class="init-art" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#ico-nest"/></svg></div>
+              <h4>Refugios para aves</h4>
+              <p>Las cajas nido pueden proporcionar espacios de protección y reproducción para determinadas especies de aves, favoreciendo su presencia en el entorno.</p>
+              <div class="photo-slot" data-slot="Foto de las cajas nido">Aquí irá una fotografía</div>
+            </div>
+            <div class="initiative">
+              <div class="init-art" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#ico-sprout"/></svg></div>
+              <h4>Recuperación del entorno natural</h4>
+              <p>La conservación de la vegetación y la recuperación de espacios degradados contribuyen a proteger el suelo, favorecer la biodiversidad y mejorar la calidad ambiental de los espacios urbanos.</p>
+              <div class="photo-slot" data-slot="Foto de la recuperación del entorno">Aquí irá una fotografía</div>
+            </div>
+          </div>
+        </article>
+
+        <p class="center"><a class="btn btn-primary" href="#reservas">Quiero visitar el cerro</a></p>
+      </div>
+    </section>
+
+    <!-- ============ D. RESERVAS ============ -->
+    <section class="section" id="reservas" data-almendra="Recuerda que algunos lugares necesitan reserva previa para poder visitarlos.">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="script eyebrow">Reservas y visitas</p>
+          <h2>Reserva tu visita</h2>
+          <p class="section-lead">Los lugares de esta plataforma requieren reserva previa. Las reservas se realizan en los canales oficiales de cada destino.</p>
+        </header>
+
+        <ol class="steps">
+          <li><span class="step-n">1</span><div><b>Elige un destino</b><p>Explora las fichas y escoge el fragmento que quieres descubrir.</p></div></li>
+          <li><span class="step-n">2</span><div><b>Reserva en el enlace oficial</b><p>Usa los botones de cada destino para ir a su plataforma de reservas.</p></div></li>
+          <li><span class="step-n">3</span><div><b>¿Necesitas ayuda?</b><p>Escríbenos y te acompañamos a gestionar tu reserva.</p></div></li>
+        </ol>
+
+        <div class="reserve-list" id="reserve-list"></div>
+
+        <div class="help-card">
+          <img src="assets/img/almendra-avatar.png" alt="" width="84" height="84">
+          <div>
+            <h3>¿Necesitas ayuda para realizar tu reserva?</h3>
+            <p>¡Podemos ayudarte! Cuéntanos qué lugar quieres visitar y te orientamos.</p>
+          </div>
+          <a class="btn btn-primary" href="#contacto">Solicitar ayuda</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ E. CONTACTO ============ -->
+    <section class="section paper-alt" id="contacto" data-almendra="¿Necesitas ayuda para realizar tu reserva? ¡Podemos ayudarte! Escríbenos por WhatsApp o Instagram.">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="script eyebrow">Contacto</p>
+          <h2>Hablemos</h2>
+          <p class="section-lead">¿Tienes dudas o quieres que te ayudemos con tu reserva? Escríbenos, estaremos felices de acompañarte en la exploración.</p>
+        </header>
+        <div class="contact-grid">
+          <a class="contact-card" data-link="whatsapp" href="#contacto">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#ico-chat"/></svg>
+            <h3>WhatsApp</h3>
+            <p>Solicita ayuda con tu reserva directamente.</p>
+            <span class="btn btn-primary" data-label>Escribir por WhatsApp</span>
+          </a>
+          <a class="contact-card" data-link="instagram" href="#contacto" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#ico-insta"/></svg>
+            <h3>Instagram</h3>
+            <p data-insta-user>Síguenos y conoce más fragmentos.</p>
+            <span class="btn btn-primary" data-label>Ir a nuestro Instagram</span>
+          </a>
+          <a class="contact-card" data-link="correo" href="#contacto" hidden>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#ico-mail"/></svg>
+            <h3>Correo</h3>
+            <p>También puedes escribirnos por correo.</p>
+            <span class="btn btn-primary" data-label>Enviar correo</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ F. PIE DE PÁGINA ============ -->
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <p class="footer-brand">Los Fragmentos perdidos <span class="script">de San Bernardo</span></p>
+        <p class="footer-phrase">Cada lugar es una pieza de nuestra historia esperando ser encontrada.</p>
+      </div>
+      <nav aria-label="Pie de página">
+        <a href="#inicio">Inicio</a>
+        <a href="#destinos">Destinos</a>
+        <a href="#cantera">La Cantera</a>
+        <a href="#reservas">Reservas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="footer-contact">
+        <a data-link="instagram" href="#contacto" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a data-link="whatsapp" href="#contacto">WhatsApp</a>
+      </div>
+    </div>
+    <p class="footer-credit">Proyecto de Maite Fuentes, Javiera Ramírez y Fernanda Sandoval · San Bernardo, Chile</p>
+  </footer>
+
+  <!-- ============ ALMENDRA (ayudante flotante) ============ -->
+  <aside class="almendra" aria-label="Almendra, tu ayudante virtual">
+    <div class="almendra-bubble" id="almendra-bubble" role="status" aria-live="polite" hidden>
+      <button class="bubble-close" aria-label="Cerrar mensaje de Almendra">×</button>
+      <p class="bubble-name">Almendra</p>
+      <p class="bubble-text" id="almendra-text"></p>
+      <div class="bubble-actions">
+        <a href="#destinos">Ver destinos</a>
+        <a href="#reservas">¿Cómo reservo?</a>
+        <a href="#contacto">Contactar</a>
+      </div>
+    </div>
+    <button class="almendra-btn" id="almendra-btn" aria-expanded="false" aria-controls="almendra-bubble" aria-label="Hablar con Almendra">
+      <img src="assets/img/almendra-avatar.png" alt="" width="72" height="72">
+      <span class="dot" hidden></span>
+    </button>
+  </aside>
+
+  <!-- Ventana de ficha para destinos sin sección propia -->
+  <dialog class="modal" id="modal">
+    <form method="dialog"><button class="modal-close" aria-label="Cerrar">×</button></form>
+    <div id="modal-body"></div>
+  </dialog>
+
+  <!-- ============ ICONOS (SVG propios) ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="ico-puzzle" viewBox="0 0 48 48"><path fill="currentColor" d="M20 6a4 4 0 0 1 8 0c0 1.2-.5 2-1 3h9a2 2 0 0 1 2 2v9c1-.5 1.8-1 3-1a4 4 0 0 1 0 8c-1.200 0-2-.5-3-1v9a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2v-9c-1 .5-1.800 1-3 1a4 4 0 0 1 0-8c1.200 0 2 .5 3 1v-9a2 2 0 0 1 2-2h9c-.5-1-1-1.800-1-3Z"/></symbol>
+      <symbol id="ico-compass" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="56" fill="#b9814f"/><circle cx="60" cy="60" r="48" fill="#f6ead2" stroke="#8a5d37" stroke-width="3"/>
+        <g stroke="#8a5d37" stroke-width="2"><path d="M60 14v10M60 96v10M14 60h10M96 60h10"/></g>
+        <path d="M60 22 68 60 60 98 52 60Z" fill="#f4eee0" stroke="#5b3d24" stroke-width="2"/>
+        <path d="M60 22 68 60 52 60Z" fill="#d96b7e"/><path d="M22 60 60 52 98 60 60 68Z" fill="#e9dcc0" stroke="#5b3d24" stroke-width="2"/>
+        <circle cx="60" cy="60" r="5" fill="#5b3d24"/>
+      </symbol>
+      <symbol id="ico-bee" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="32" cy="38" rx="12" ry="9"/><path d="M26 30c-4-8-12-10-14-6s4 10 14 8M38 30c4-8 12-10 14-6s-4 10-14 8M26 36v4M32 34v8M38 36v4M20 38h-5M44 38h5"/></g></symbol>
+      <symbol id="ico-log" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="38" width="44" height="14" rx="7"/><rect x="16" y="22" width="32" height="14" rx="7"/><circle cx="48" cy="45" r="3"/><circle cx="22" cy="29" r="3"/></g></symbol>
+      <symbol id="ico-nest" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M16 22 32 10l16 12v30H16Z"/><circle cx="32" cy="32" r="6"/><path d="M26 52V60M38 52V60"/></g></symbol>
+      <symbol id="ico-sprout" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 56V30M32 34C32 22 24 16 12 16c0 12 8 18 20 18ZM32 28c0-10 6-16 18-16 0 10-6 16-18 16ZM18 56h28"/></g></symbol>
+      <symbol id="ico-chat" viewBox="0 0 48 48"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" d="M8 12a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H20l-9 8v-8h-1a2 2 0 0 1-2-2Z"/><path d="M16 18h16M16 25h10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+      <symbol id="ico-insta" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3"><rect x="8" y="8" width="32" height="32" rx="9"/><circle cx="24" cy="24" r="7.500"/><circle cx="34" cy="14" r="1.500" fill="currentColor"/></g></symbol>
+      <symbol id="ico-mail" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="6" y="10" width="36" height="28" rx="4"/><path d="m8 14 16 13 16-13"/></g></symbol>
+    </defs>
+  </svg>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
