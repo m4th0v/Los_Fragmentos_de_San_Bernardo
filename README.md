@@ -24,3 +24,8 @@ Abre `index.html` con doble clic. (Opcional: `python -m http.server` en la carpe
 - **Nuevo destino**: copia un bloque dentro de `destinos` y cambia sus datos; la tarjeta y la sección de reservas aparecen solas. Sube su foto a `assets/img/` y pon la ruta en `foto`.
 - **Historia, flora y fauna**: completa `lineaDeTiempo`, `flora` y `fauna` en `cantera`.
 - **Fotos de iniciativas**: reemplaza los recuadros `photo-slot` en `index.html` por `<img>`.
+
+## Ampliación (v2)
+- Nuevos destinos: Casa de la Cultura Manuel Magallanes Moure y Cervecería Cerros de Chena (en `js/data.js`).
+- Cerro La Cantera: tarjetas de flora y fauna, y la sección "Todo está conectado".
+- Cada destino admite `foto`, `horarios`, `condiciones`, `reservaUrl`, `disponibilidadUrl`, `masInfoUrl` y `contactoUrl`.
