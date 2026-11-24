@@ -21,6 +21,17 @@
     return n;
   }
   function has(v) { return typeof v === "string" && v.trim() !== ""; }
+  function icon(id, cls) {
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 64 64"); svg.setAttribute("aria-hidden", "true");
+    if (cls) svg.setAttribute("class", cls);
+    var u = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    u.setAttribute("href", "#" + id); svg.appendChild(u);
+    return svg;
+  }
+  function photoSlot(iconId, text) {
+    return el("div", { class: "slot-photo" }, [iconId ? icon(iconId, "slot-ico") : null, el("span", { text: text || "Aquí irá una fotografía" })]);
+  }
   function safeUrl(u) { return /^https?:\/\//i.test(u) || /^mailto:/i.test(u); }
 
   /* Botón que lleva a un enlace oficial, o queda desactivado si aún no existe */
@@ -76,17 +87,31 @@
 
   function openModal(d) {
     modalBody.textContent = "";
-    if (has(d.foto)) modalBody.appendChild(el("img", { src: d.foto, alt: d.fotoAlt || d.nombre }));
+    modalBody.appendChild(has(d.foto)
+      ? el("img", { src: d.foto, alt: d.fotoAlt || d.nombre })
+      : photoSlot(d.icono, "Fotografía por incorporar"));
+    if (has(d.destacado)) modalBody.appendChild(el("p", { class: "ribbon", text: d.destacado }));
     modalBody.appendChild(el("h3", { text: d.nombre }));
     modalBody.appendChild(el("p", { text: d.descripcion || "" }));
-    if (d.info && d.info.length) {
-      var ul = el("ul", { class: "modal-info" });
-      d.info.forEach(function (t) { ul.appendChild(el("li", { text: t })); });
+    if (d.queHacer && d.queHacer.length) {
+      modalBody.appendChild(el("h4", { text: d.queHacerTitulo || "Qué puedes hacer" }));
+      var ul = el("ul", { class: "modal-list" });
+      d.queHacer.forEach(function (t) { ul.appendChild(el("li", { text: t })); });
       modalBody.appendChild(ul);
     }
-    modalBody.appendChild(el("p", { text: "Recuerda que este lugar requiere reserva previa." }));
+    (d.fichaExtra || []).forEach(function (x) {
+      modalBody.appendChild(el("div", { class: "note-box" }, [el("h4", { text: x.titulo }), el("p", { text: x.texto })]));
+    });
+    if (has(d.sabiasQue)) {
+      modalBody.appendChild(el("div", { class: "note-box know" }, [el("h4", { text: "¿Sabías que...?" }), el("p", { text: d.sabiasQue })]));
+    }
+    if (has(d.horarios)) modalBody.appendChild(el("p", { text: "Horarios: " + d.horarios }));
+    if (has(d.condiciones)) modalBody.appendChild(el("p", { text: "Condiciones de visita: " + d.condiciones }));
     var row = el("div", { class: "btn-row" });
-    row.appendChild(linkButton("Reservar visita", d.reservaUrl, "btn-primary btn-sm"));
+    row.appendChild(linkButton(d.etiquetaReserva || "Reservar visita", d.reservaUrl, "btn-primary btn-sm"));
+    var help = el("a", { class: "btn btn-ghost btn-sm", href: "#contacto", text: "Pedir ayuda" });
+    help.addEventListener("click", function () { modal.close(); });
+    row.appendChild(help);
     modalBody.appendChild(row);
     if (typeof modal.showModal === "function") modal.showModal(); else modal.setAttribute("open", "");
   }
@@ -94,7 +119,7 @@
   (SITE.destinos || []).forEach(function (d) {
     var photo = has(d.foto)
       ? el("img", { src: d.foto, alt: d.fotoAlt || d.nombre, loading: "lazy" })
-      : el("div", { class: "slot-photo", text: "Aquí irá una fotografía" });
+      : photoSlot(d.icono, "Fotografía por incorporar");
     var tags = el("ul");
     (d.info || []).forEach(function (t) { tags.appendChild(el("li", { text: t })); });
 
@@ -107,14 +132,15 @@
     }
     var actions = el("div", { class: "card-actions" }, [
       more,
-      linkButton("Reservar visita", d.reservaUrl, "btn-primary btn-sm")
+      linkButton(d.etiquetaReserva || "Reservar visita", d.reservaUrl, "btn-primary btn-sm")
     ]);
     cardsBox.appendChild(el("article", { class: "card" }, [
       el("div", { class: "card-photo" }, [photo]),
       el("div", { class: "card-body" }, [
+        has(d.destacado) ? el("p", { class: "ribbon", text: d.destacado }) : null,
         has(d.etiqueta) ? el("p", { class: "card-tag", text: d.etiqueta }) : null,
         el("h3", { text: d.nombre }),
-        el("p", { class: "card-desc", text: d.descripcion || "" }),
+        el("p", { class: "card-desc", text: d.descripcionCorta || d.descripcion || "" }),
         tags,
         actions
       ])
@@ -138,15 +164,21 @@
   var rl = document.getElementById("reserve-list");
   (SITE.destinos || []).forEach(function (d) {
     var actions = el("div", { class: "reserve-actions" }, [
-      linkButton("Reservar visita", d.reservaUrl, "btn-primary btn-sm"),
+      linkButton(d.etiquetaReserva || "Reservar visita", d.reservaUrl, "btn-primary btn-sm"),
       linkButton("Conocer disponibilidad", d.disponibilidadUrl, "btn-ghost btn-sm"),
-      linkButton("Más información", d.masInfoUrl, "btn-ghost btn-sm")
+      linkButton("Más información", d.masInfoUrl, "btn-ghost btn-sm"),
+      linkButton("Contacto directo", d.contactoUrl, "btn-ghost btn-sm", "El contacto directo de este lugar se agregará pronto. Mientras tanto, escríbenos y te orientamos.")
     ]);
-    var anyLink = has(d.reservaUrl) || has(d.disponibilidadUrl) || has(d.masInfoUrl);
+    var anyLink = has(d.reservaUrl) || has(d.disponibilidadUrl) || has(d.masInfoUrl) || has(d.contactoUrl);
+    var details = el("div", { class: "reserve-details" }, [
+      el("p", { class: has(d.horarios) ? "" : "tbc", text: "Horarios y disponibilidad: " + (has(d.horarios) ? d.horarios : "por confirmar") }),
+      el("p", { class: has(d.condiciones) ? "" : "tbc", text: "Condiciones de visita: " + (has(d.condiciones) ? d.condiciones : "por confirmar") })
+    ]);
     rl.appendChild(el("div", { class: "reserve-row" }, [
       el("h3", { text: d.nombre }),
       actions,
-      anyLink ? null : el("p", { class: "pending-note", text: "Los enlaces oficiales de este destino se agregarán pronto. Mientras tanto, contáctanos y te ayudamos con tu reserva." })
+      details,
+      anyLink ? null : el("p", { class: "pending-note", text: "Los enlaces oficiales de este destino se agregarán pronto. Mientras tanto, contáctanos y te ayudamos." })
     ]));
   });
 
@@ -174,18 +206,24 @@
   function renderSpecimens(boxId, list, placeholderTitle) {
     var box = document.getElementById(boxId);
     if (list && list.length) {
-      list.forEach(function (s) {
+      list.forEach(function (sp) {
+        var tags = null;
+        if (sp.etiquetas && sp.etiquetas.length) {
+          tags = el("ul", { class: "chips" });
+          sp.etiquetas.forEach(function (t) { tags.appendChild(el("li", { text: t })); });
+        }
         box.appendChild(el("article", { class: "specimen" }, [
-          has(s.foto) ? el("img", { src: s.foto, alt: s.nombre, loading: "lazy" }) : el("div", { class: "slot-photo", text: "Aquí irá una fotografía" }),
-          el("h4", { text: s.nombre }),
-          has(s.cientifico) ? el("p", { class: "sci", text: s.cientifico }) : null,
-          el("p", { text: s.texto || "" })
+          has(sp.foto) ? el("img", { src: sp.foto, alt: sp.nombre, loading: "lazy" }) : photoSlot(sp.icono, "Fotografía por incorporar"),
+          el("h4", { text: sp.nombre }),
+          has(sp.cientifico) ? el("p", { class: "sci", text: sp.cientifico }) : null,
+          el("p", { text: sp.texto || "" }),
+          tags
         ]));
       });
     } else {
       for (var k = 0; k < 3; k++) {
         box.appendChild(el("article", { class: "specimen pending" }, [
-          el("div", { class: "slot-photo", text: "Aquí irá una fotografía" }),
+          photoSlot(null, "Aquí irá una fotografía"),
           el("h4", { text: placeholderTitle }),
           el("p", { text: "Nombre, descripción e importancia ecológica: información por incorporar." })
         ]));

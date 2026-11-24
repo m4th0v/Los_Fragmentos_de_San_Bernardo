@@ -287,3 +287,41 @@ p { margin: 0 0 1em; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ==========================================================================
+   AMPLIACIÓN: nuevos destinos, especies y ecosistema
+   ========================================================================== */
+.slot-photo { flex-direction: column; gap: .4rem; }
+.slot-ico { width: 52px; height: 52px; color: var(--coral); opacity: .8; }
+.card-photo .slot-photo { height: 100%; border-radius: 0; border: 0; border-bottom: 2px dashed var(--pink); }
+.modal .slot-photo { margin-bottom: 1rem; min-height: 150px; }
+
+.ribbon { display: inline-block; align-self: flex-start; margin: 0 0 .4rem; background: var(--green); color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: .02em; padding: .25rem .75rem; border-radius: 999px; }
+.modal { max-height: 90vh; overflow: auto; }
+.modal h4 { font-size: 1.1rem; margin: 1rem 0 .4rem; }
+.modal-list { margin: 0 0 1rem; padding-left: 1.2rem; }
+.modal-list li { margin-bottom: .25rem; }
+.note-box { background: var(--pink-soft); border-left: 5px solid var(--coral); border-radius: 0 10px 10px 0; padding: .7rem 1rem; margin: 1rem 0; }
+.note-box h4 { margin: 0 0 .25rem; }
+.note-box p { margin: 0; font-size: .96rem; }
+.note-box.know { background: #e8efe4; border-left-color: var(--green-soft); }
+.modal .btn-row { margin-top: 1.2rem; }
+
+.specimen { display: flex; flex-direction: column; }
+.specimen h4 { font-size: 1.25rem; }
+.specimen .sci { font-family: var(--font-body); font-style: italic; }
+.specimen .slot-photo { min-height: 0; }
+.chips { list-style: none; padding: 0; margin: .7rem 0 0; display: flex; flex-wrap: wrap; gap: .35rem; }
+.chips li { background: var(--pink-soft); color: var(--green); font-size: .78rem; font-weight: 700; padding: .2rem .6rem; border-radius: 999px; }
+.specimens { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+.web { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; position: relative; }
+.web li { display: flex; gap: .9rem; align-items: flex-start; background: var(--white); border-radius: 12px; padding: 1rem 1.1rem; box-shadow: var(--shadow); border-top: 4px dotted var(--coral); }
+.web-ico { flex: none; width: 50px; height: 50px; border-radius: 50%; background: var(--pink-soft); color: var(--coral-dark); display: grid; place-items: center; }
+.web-ico svg { width: 30px; height: 30px; }
+.web p { margin: .15rem 0 0; font-size: .95rem; }
+
+.reserve-details { flex-basis: 100%; display: grid; gap: .15rem; font-size: .92rem; }
+.reserve-details p { margin: 0; }
+.reserve-details .tbc { color: #906a74; }
+@media (max-width: 480px) { .reserve-details { flex-basis: auto; } }
